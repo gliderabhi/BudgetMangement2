@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main_menu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.munna.budgetmangement2.MainMenu">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="60dp"
+        android:textSize="26dp"
+        android:layout_marginRight="40dp"
+        android:textAlignment="center"
+        android:id="@+id/HeaderText"
+        android:text="Welcome to database management.Select one of the below options to start"
+        />
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/Submit_expenses"
+        android:layout_marginTop="30dp"
+        android:text="Submit Expense"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_below="@+id/HeaderText"
+        android:layout_centerHorizontal="true"
+        android:onClick="InsertSpent"
+        />
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:id="@+id/ViewTotalExpenses"
+        android:text="Total Expense"
+        android:layout_below="@+id/Submit_expenses"
+        android:onClick="Total"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ChangeTableName"
+        android:layout_below="@+id/ViewTotalExpenses"
+        android:text="New Table Add"
+        android:layout_marginTop="10dp"
+        android:onClick="ChangeTable"/>
+
+
+</RelativeLayout>

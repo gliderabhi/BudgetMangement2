@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_data_insert"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.munna.budgetmangement2.DataInsert">
+
+    <Spinner
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="60dp"
+        android:id="@+id/MoneyHandleList"
+        ></Spinner>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/ExpensesDescription"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="70dp"
+        android:layout_below="@+id/MoneyHandleList"
+        android:layout_height="wrap_content">
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="Description"
+            android:id="@+id/ExpensesDescriptionText"
+            android:padding="20dp"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ExpensesValue"
+        android:padding="10dp"
+        android:layout_below="@+id/ExpensesDescription"
+        android:layout_marginLeft="30dp">
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="Value"
+            android:inputType="numberSigned"
+            android:id="@+id/ExpenseValueText"/>
+    </android.support.design.widget.TextInputLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:onClick="AddValues"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/ValuesAdd"
+        android:layout_below="@+id/ExpensesValue"/>
+</RelativeLayout>
