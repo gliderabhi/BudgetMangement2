@@ -15,11 +15,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainMenu" />
-        <activity android:name=".ChangeTableActivity" />
-        <activity android:name=".TableListActivity" />
-        <activity android:name=".ViewTable" />
-        <activity android:name=".DataInsert"></activity>
+        <activity android:name=".MainMenu"
+            android:label="Selection Menu"/>
+        <activity android:name=".ViewTable"
+            android:label="Account Details"/>
+        <activity android:name=".DataInsert"
+            android:label="Expenses or transfer"/>
     </application>
 
 </manifest>

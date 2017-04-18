@@ -6,18 +6,29 @@
     android:layout_height="match_parent"
     tools:context="com.example.munna.budgetmangement2.DataInsert">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TopHeadText"
+        android:text="Select an option"
+        android:textStyle="italic"
+        android:textSize="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"/>
     <Spinner
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="30dp"
+        android:layout_below="@+id/TopHeadText"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="25dp"
+        android:translationZ="30dp"
         android:id="@+id/MoneyHandleList"
         ></Spinner>
     <android.support.design.widget.TextInputLayout
         android:layout_width="wrap_content"
         android:id="@+id/ExpensesDescription"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="22dp"
         android:layout_below="@+id/MoneyHandleList"
         android:layout_height="wrap_content">
         <EditText
@@ -25,7 +36,7 @@
             android:layout_height="wrap_content"
             android:hint="Description"
             android:id="@+id/ExpensesDescriptionText"
-            android:padding="20dp"
+            android:padding="10dp"
             />
 
     </android.support.design.widget.TextInputLayout>
@@ -34,22 +45,58 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ExpensesValue"
-        android:padding="10dp"
+        android:layout_marginTop="22dp"
         android:layout_below="@+id/ExpensesDescription"
         android:layout_marginLeft="30dp">
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:hint="Value"
+            android:padding="10dp"
             android:inputType="numberSigned"
             android:id="@+id/ExpenseValueText"/>
     </android.support.design.widget.TextInputLayout>
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/DateSpinner"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/ExpensesValue"
+        android:layout_marginLeft="30dp"
+        android:translationZ="30dp"
+
+        ></Spinner>
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/MonthSpinner"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/ExpensesValue"
+        android:layout_toRightOf="@+id/DateSpinner"
+        android:layout_marginLeft="30dp"
+        android:translationZ="30dp"
+
+        ></Spinner>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/YearSpinner"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/MonthSpinner"
+        android:layout_below="@+id/ExpensesValue"
+        android:layout_marginLeft="30dp"
+        android:translationZ="30dp"
+
+        ></Spinner>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add"
+        android:layout_marginTop="22dp"
         android:onClick="AddValues"
         android:layout_centerHorizontal="true"
         android:id="@+id/ValuesAdd"
-        android:layout_below="@+id/ExpensesValue"/>
+        android:layout_below="@+id/MonthSpinner"/>
 </RelativeLayout>

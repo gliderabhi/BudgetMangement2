@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class LoginScreen extends AppCompatActivity {
 
     ImageView img;
-    Integer SPLASH_DISPLAY_LENGTH=3000;
+    Integer SPLASH_DISPLAY_LENGTH=1000;
    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -10,8 +10,10 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,74 +22,89 @@ import java.util.ArrayList;
 public class ViewTable extends AppCompatActivity {
     CustomAdaptor adaptor;
     DbHelper db;
-    ArrayList<String> descr,date;
-    ArrayList<Integer> values;
-    TextView remaining;
-    EditText input;
-    Integer balance;
-    String TableTOShow;
-    SharedPreferences sharedPreferences;
-
+    ArrayList<String> descr,date,categories;
+    ArrayList<Integer> values,expenses;
+    TextView remaining,txt;
+    Integer r,spent=0;
+    Spinner options;
+    ArrayAdapter myAdaptor;
+    String option[]={"All Categories","Food","Clothing","Study Material","Borrowed","Money Transferred","Vehicle Management","Money Returned"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_table);
-        sharedPreferences=getSharedPreferences(getString(R.string.Search), Context.MODE_PRIVATE);
-        TableTOShow= sharedPreferences.getString(getString(R.string.Search),null);
+        options=(Spinner)findViewById(R.id.TableViewSpinner);
+        myAdaptor=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,option);
+        myAdaptor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        options.setAdapter(myAdaptor);
 
         CreateList();
     }
     // Function to populate expenditure list
-    public void CreateList(){
-        db=new DbHelper(this);
-        date=new ArrayList<String>();
-        descr=new ArrayList<String>();
-        values=new ArrayList<Integer>();
-        descr=db.description(TableTOShow);
-        values=db.Values(TableTOShow);
-        date=db.DateTime(TableTOShow);
-        remaining=(TextView)findViewById(R.id.RemainingValue);
-        ArrayList<BudgetClass> buget=new ArrayList<>();
-        BudgetClass bc;
-        for(int i=0;i<descr.size();++i){
-            bc=new BudgetClass();
-            bc.setDesc(descr.get(i));
-            bc.setValues(values.get(i));
-            bc.setDate(date.get(i));
-            buget.add(bc);
-        }
-        ListView lst=(ListView)findViewById(R.id.ListDesc);
-        adaptor= new CustomAdaptor(buget,getApplicationContext());
-        lst.setAdapter(adaptor);
-        TextView txt=(TextView)findViewById(R.id.TotalValue);
-        int r=db.TotalExpenses(TableTOShow).getInt(0);
-        remaining.setText(String.valueOf(balance-r));
-        txt.setText(String.valueOf(db.TotalExpenses(TableTOShow).getInt(0)));
-        lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                AlertDialog.Builder bd=new AlertDialog.Builder(ViewTable.this);
-                input=new EditText(ViewTable.this);
-                input.setInputType(InputType.TYPE_CLASS_NUMBER);
-                bd.setView(input);
-                bd.setTitle("Please enter a new value for "+descr.get(i)+"or cancel this commentbox");
-                bd.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(getApplicationContext(),descr.get(i),Toast.LENGTH_SHORT).show();
-                    }
-                });
-                bd.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                    }
-                });
-                bd.show();
+    public void CreateList() {
+        db = new DbHelper(this);
+        int p = db.checkTable();
+        if (p == 0) {
+            date = new ArrayList<String>();
+            descr = new ArrayList<String>();
+            values = new ArrayList<Integer>();
+            categories = new ArrayList<String>();
 
+            descr = db.description();
+            values = db.Values();
+            date = db.DateTime();
+            expenses = db.TotalExpense();
+            categories=db.Categories();
+
+            for (int i = 0; i < expenses.size(); ++i) {
+                r = expenses.get(i);
+                if (r > 0) {
+                    spent += r;
+                }
             }
-        });
+
+            ArrayList<BudgetClass> buget = new ArrayList<>();
+            BudgetClass bc;
+            for (int i = 0; i < descr.size(); ++i) {
+                bc = new BudgetClass();
+                bc.setDesc(descr.get(i));
+                bc.setValues(values.get(i));
+                bc.setDate(date.get(i));
+                bc.setCategory(categories.get(i));
+                buget.add(bc);
+            }
+            ListView lst = (ListView) findViewById(R.id.ListDesc);
+            adaptor = new CustomAdaptor(buget, getApplicationContext());
+            lst.setAdapter(adaptor);
+
+            int rem=db.TotalExpenses().getInt(0)*-1;
+            remaining = (TextView) findViewById(R.id.RemainingValue);
+            remaining.setText(String.valueOf(rem));
+
+            txt = (TextView) findViewById(R.id.TotalValue);
+            txt.setText(String.valueOf(spent));
+
+        }else{
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setMessage("Please enter some values before proceeding");
+                    alertDialogBuilder.setPositiveButton("yes",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    Intent i=new Intent(getApplicationContext(),DataInsert.class);
+                                    startActivity(i);
+                                }
+                            });
+
+
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+        }
     }
+
+
+
 
 
 

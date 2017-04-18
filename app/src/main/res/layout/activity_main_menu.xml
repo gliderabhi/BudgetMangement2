@@ -5,47 +5,76 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.munna.budgetmangement2.MainMenu">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="60dp"
-        android:textSize="26dp"
-        android:layout_marginRight="40dp"
-        android:textAlignment="center"
-        android:id="@+id/HeaderText"
-        android:text="Welcome to database management.Select one of the below options to start"
-        />
+
     <Button
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_width="150dp"
         android:id="@+id/Submit_expenses"
         android:layout_marginTop="30dp"
-        android:text="Submit Expense"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:layout_below="@+id/HeaderText"
-        android:layout_centerHorizontal="true"
+        android:translationZ="40dp"
+        android:background="@drawable/spend"
+        android:layout_marginLeft="30dp"
         android:onClick="InsertSpent"
         />
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Add Expenditure"
+      android:layout_below="@+id/Submit_expenses"
+      android:textSize="18dp"
+      android:textAlignment="center"
+      android:layout_marginLeft="30dp"
+      android:layout_marginTop="10dp"
+      android:id="@+id/SpendText"
+      android:textStyle="italic"
+      />
     <Button
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_width="150dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="30dp"
+        android:translationZ="40dp"
         android:id="@+id/ViewTotalExpenses"
-        android:text="Total Expense"
-        android:layout_below="@+id/Submit_expenses"
-        android:onClick="Total"
+        android:layout_marginLeft="40dp"
+        android:background="@drawable/monyadded"
+        android:layout_toRightOf="@+id/Submit_expenses"
+        android:onClick="AddMoney"
         />
-
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Add Money to account"
+      android:textAlignment="center"
+      android:layout_below="@+id/Submit_expenses"
+      android:textSize="18dp"
+      android:layout_toRightOf="@+id/Submit_expenses"
+      android:layout_marginLeft="30dp"
+      android:layout_marginTop="10dp"
+      android:id="@+id/AddMoneyText"
+      android:textStyle="italic"
+      />
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/ChangeTableName"
-        android:layout_below="@+id/ViewTotalExpenses"
-        android:text="New Table Add"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:id="@+id/ViewTable"
+        android:translationZ="40dp"
+        android:layout_below="@+id/AddMoneyText"
+        android:background="@drawable/viewwallet"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:onClick="ChangeTable"/>
-
+        android:onClick="Total"/>
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="View Wallet Details"
+      android:layout_below="@+id/ViewTable"
+      android:textSize="18dp"
+      android:layout_centerHorizontal="true"
+      android:layout_marginLeft="30dp"
+      android:textAlignment="center"
+      android:layout_marginTop="10dp"
+      android:id="@+id/ViewTableText"
+      android:textStyle="italic"
+      />
 
 </RelativeLayout>
